@@ -12,7 +12,10 @@ services:
       - HF_TOKEN=${HF_TOKEN:-}
     volumes:
       - /hdd1/model-files/laya:/root/.cache/huggingface
- 
-volumes:
-  hf-cache:
- 
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["1"]
+              capabilities: [gpu]
